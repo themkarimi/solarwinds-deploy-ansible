@@ -1,0 +1,31 @@
+---
+# name: copy swiagent.tar.gz to remote host
+  # copy:
+          #   src: swiagent.tar.gz
+    #   dest: /home/ansible/swiagent.tar.gz
+    #   mode: 0755
+    #   owner: ansible
+    #   group: ansible
+    # when: ansible_os_family== "Debian"
+  # name: copy swiagent-centos to remote host
+  # copy:
+          #   src: swiagent-centos.tar.gz
+    #   dest: /home/ansible/swiagent-centos.tar.gz
+    #   owner: ansible
+    #   group: ansible
+    #   mode: 0755
+    #     when: ansible_os_family== "RedHat"
+- name: untar the file
+  unarchive:
+    src: swiagent.tar.gz
+    dest: /home/ansible
+    mode: 0755
+  when: ansible_os_family== "Debian"
+- name: untar the file centos
+  unarchive:
+    src: swiagent-centos.tar.gz
+    dest: /home/ansible
+    mode: 0755
+  when: ansible_os_family== "RedHat"
+- name: run install.sh
+  command: bash /home/ansible/install.sh

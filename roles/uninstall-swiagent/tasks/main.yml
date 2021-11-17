@@ -1,0 +1,9 @@
+---
+- name: uninstall swiagent
+  apt:
+    state: absent
+    name: swiagent
+    when: ansible_os_family== "Debian"
+ - name: uninstall swiagent CentOS
+     command: rpm -e swiagent
+     when: ansible_os_family== "RedHat"

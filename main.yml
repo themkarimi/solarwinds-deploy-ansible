@@ -1,0 +1,5 @@
+---
+- hosts: CentOS-Servers
+  become: yes
+  roles:
+    - install-swiagent
